@@ -3,7 +3,9 @@ package org.example.aplikacjazaliczeniowa.User;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.example.aplikacjazaliczeniowa.Order.Order;
 import org.example.aplikacjazaliczeniowa.Product.Product;
+import org.example.aplikacjazaliczeniowa.Review.Review;
 
 import java.util.List;
 
@@ -30,4 +32,17 @@ public class User {
     List<Product> cart;
 
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    List<Order> orders;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    List<Review> reviews;
+
+    public User(String name, String surname, String password, Role role) {
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.role = role;
+    }
 }

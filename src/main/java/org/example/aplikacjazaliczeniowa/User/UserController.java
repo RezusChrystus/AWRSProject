@@ -26,7 +26,7 @@ public class UserController {
         return userService.login(name, password);
     }
 
-    @GetMapping
+    @GetMapping()
     public List<User> getAllUsers(){
         return userService.findAll();
     }
@@ -44,4 +44,6 @@ public class UserController {
     public double getCartValue(@PathVariable int userId) {
         return userService.getCartValue(userId);
     }
+
+
 }
